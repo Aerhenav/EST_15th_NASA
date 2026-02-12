@@ -222,6 +222,21 @@ optuna 하이퍼 튜닝에서도 nasa score를 기준으로 학습되게 수정�
 3. **모델 최적화 (Optuna & Custom Loss)**:
 * **XGBoost, LightGBM** 등 머신러닝 모델을 사용하며, **NASA Scoring 방식**에 최적화되도록 커스텀 목적 함수(Custom Objective Function)를 적용하여 학습합니다.
 
+4. **유닛별 NASA Score 기여도 계산**:
+* NASA Score 악화의 원인이 일부 긴 RUL을 갖는 소수의 장수 엔진이 원인이라는 것을 확인.
+```PS
+errors = test_df['pred'].values - y_test
+specific_nasa_scores = []
+for e in errors:
+    # NASA Score 공식 적용 (e = pred - true)
+    s = np.exp(e/13)-1 if e < 0 else np.exp(e/10)-1
+    specific_nasa_scores.append(s)
+
+test_df['nasa_penalty'] = specific_nasa_scores
+print(test_df.sort_values(by='nasa_penalty', ascending=False).head(10))
+```
+![NASA Score 기여도 계산.png](https://cdn.discordapp.com/attachments/1451496750023049256/1471413297377968220/image.png?ex=698ed7eb&is=698d866b&hm=b07c2dddef6b1788d29a20b671512c36b6c18de6f8f4a59519b0f025268f27ee&)
+
 * **운전 조건별 분리 처리**: 단순히 데이터를 합쳐 학습했을 때보다, 운전 조건(6개)을 식별하여 특징(Feature)에 반영했을 때 예측 성능이 향상됨을 확인했습니다.
 * **하이퍼파라미터 튜닝**: 데이터 양이 FD001보다 많으므로(엔진 260개), 과적합을 방지하기 위해 더 정교한 교차 검증(GroupShuffleSplit)과 Optuna를 통한 파라미터 최적화를 수행했습니다.
 
