@@ -327,7 +327,7 @@ print(test_df.sort_values(by='nasa_penalty', ascending=False).head(10))
 
 ![FD-002 점수 표.png](https://cdn.discordapp.com/attachments/388576721634590720/1471407252614418493/image.png?ex=698ed24a&is=698d80ca&hm=221ceb47dd80786e536f78a854139ea532e5a6b9b590aae2223e00b78c2ab8ec&)
     
-
+![FD-002 점수 표.png](https://cdn.discordapp.com/attachments/388576721634590720/1471461694831071232/image.png?ex=698f04fe&is=698db37e&hm=5c2a21660d7a6e3a532902a2b98c2e46f424741e6ece8d863908d4c8052bdbcf&)
 
 
 
