@@ -200,7 +200,7 @@ optuna 하이퍼 튜닝에서도 nasa score를 기준으로 학습되게 수정�
 
 ## AI 모델 개발 15회차 1차 팀프로젝트 - NASA Turbofan Jet Engine Data Set 터보엔진 유지보전 문제_FD002
 
-** 1.초기[CNN + LSTM + Attention 구조로 시계열 패턴 학습]** 
+**1.초기[CNN + LSTM + Attention 구조로 시계열 패턴 학습]** 
 
 **-Conv1D:** 짧은 구간 센서 변화(패턴/노이즈) 포착
 
@@ -223,6 +223,7 @@ optuna 하이퍼 튜닝에서도 nasa score를 기준으로 학습되게 수정�
 
 
 **2. 중기[NASA 비대칭(Asymmetric) + 가중 Loss 도입]** 
+
 **- NASA 비대칭 Loss :** NASA는 over를 더 싫어한다는 규칙을 딥러닝 loss에 직접 주입한 순간, 점수가 본격적으로 내려가기 시작
 over 폭탄을 줄임 → NASA 점수가 크게 내려감 →low RUL 구간의 불안정 예측을 줄임 → 폭탄 unit 감소 → 그래서 ~14,000대까지 내려가는 계기가 됨
 
@@ -238,6 +239,7 @@ over 폭탄을 줄임 → NASA 점수가 크게 내려감 →low RUL 구간의 �
 
 
 **3. 후기[위험 센서 억제(감쇠/드랍), TOP-10 엔진 분석, 후처리 (squash/piecewise), unit-last robust 집계(median_lastk]**
+
 **• 모델CNN/LSTM(+Attention) 구조 유지/개선**
 **1. Loss는 동일**
 **2. CNN :** 센서 데이터의 “짧은 구간 패턴(국소 변화)” 추출
@@ -253,6 +255,7 @@ over 폭탄을 줄임 → NASA 점수가 크게 내려감 →low RUL 구간의 �
 <img width="433" height="65" alt="3  후기-Attention(MultiHeadAttention)" src="https://github.com/user-attachments/assets/d04a968b-f5fc-4728-80e2-d3bf7f474f48" />
 
 **• 핵심 후처리:**
+
 **1. 위험 센서 억제(감쇠/드랍) :** FD002는 운영조건별 센서 분포가 달라서, op_cluster별 정규화로 조건발 튐을 눌렀다.
 
 <img width="713" height="381" alt="3  후기-위험 센서 억제(op_cluster 기반 정규화로 감쇠)" src="https://github.com/user-attachments/assets/368ea584-166c-4b54-b8f8-bc74b5448568" />
