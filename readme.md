@@ -198,7 +198,7 @@ optuna 하이퍼 튜닝에서도 nasa score를 기준으로 학습되게 수정�
 
 
 
-## AI 모델 개발 15회차 1차 팀프로젝트 - NASA Turbofan Jet Engine Data Set 터보엔진 유지보전 문제_FD00
+## AI 모델 개발 15회차 1차 팀프로젝트 - NASA Turbofan Jet Engine Data Set 터보엔진 유지보전 문제_FD002
 
 **[데이터 셋의 특징]**
 
