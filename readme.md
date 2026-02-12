@@ -279,6 +279,7 @@ over 폭탄을 줄임 → NASA 점수가 크게 내려감 →low RUL 구간의 �
 
 
 **4. 현재**
+
 **1) 운영조건(op_cluster) 별 스케일링을 “train과 test 모두”에 적용 :** op_cluster별 스케일링으로 “조건발 센서 튐”을 줄였고
 
 <img width="581" height="291" alt="4  현재-운영조건(op_cluster) 별 스케일링을 train, test 모두에 적용" src="https://github.com/user-attachments/assets/953004f1-9d74-4847-b96f-5847464c7dc6" />
