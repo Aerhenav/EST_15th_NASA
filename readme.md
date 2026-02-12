@@ -124,6 +124,7 @@ train_df["WfP3C[pph/psi]"] = train_df["phi[pph/psi]"]/np.sqrt(train_df["T2[R]"]/
 
       2. 이 문제에서는 엔진 고장시 온도나 압력이 동반 상승하는 효과로 인해 단순히 RUL과 상관 계수가 너무 크다고 삭제할수 없다.
       3. 상관계수가 0.1 미만이거나 위 파생 컬럼 생성에 의해 중간 과정 발생 컬럼, 중복 컬럼은 삭제한다. 이는 다중공선성 체크나 RUL에 따른 변화도 차이를 비교하여 판단할수 있다.
+     
       ![컬럼 별 중복성 체크 (2)](https://github.com/user-attachments/assets/e08b108f-64bc-41ab-8941-8d577ed9b623)
 
 
