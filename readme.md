@@ -49,10 +49,10 @@ FD-004: 운전 조건(고도, 속도, 쓰로틀 각도) 6개, 고장모드 (HPC,
 - 항공기의 경우 남은 수명을 더 적게 예측해 미리 사용정지 할경우 생기는 문제는 심각하지 않지만 반대 경우 운전 중 사고가 나서 심각한 문제가 발생할 수 있습니다.
 - 따라서 작은 RUL 예측(early prediction)에 비해 큰 RUL 예측(late prediction)에 대해 훨씬 큰 페널티를 매기는 nasa scroring 방식을 사용합니다.
 
-[![nasa scoring 공식.jpg]](https://cdn.discordapp.com/attachments/1451496750023049256/1471382306181611520/nasa_scoring_.jpg?ex=698ebb0e&is=698d698e&hm=3fd9f5508b18505ce3c085dbb8bc3c004ad3625b717483fec383e7ff811b5eb0&)
-![nasa scoring 그래프.jpg]
+[![nasa scoring 공식.jpg](https://cdn.discordapp.com/attachments/1451496750023049256/1471382306181611520/nasa_scoring_.jpg?ex=698ebb0e&is=698d698e&hm=3fd9f5508b18505ce3c085dbb8bc3c004ad3625b717483fec383e7ff811b5eb0&)]
+![nasa scoring 그래프.jpg](https://cdn.discordapp.com/attachments/1451496750023049256/1471382306441920764/nasa_scoring_.jpg?ex=698ebb0e&is=698d698e&hm=5300f1623be7b6e78f1c273ad42ec547186abe2d8a621146b73b34d9ce11a183&)]
 
-[[FD-001 문제해결 핵심 전략]](https://cdn.discordapp.com/attachments/1451496750023049256/1471382306441920764/nasa_scoring_.jpg?ex=698ebb0e&is=698d698e&hm=5300f1623be7b6e78f1c273ad42ec547186abe2d8a621146b73b34d9ce11a183&)
+[FD-001 문제해결 핵심 전략]
 
    - 노이즈 제거
       1. roliing window 방식
@@ -113,7 +113,7 @@ FD-004: 운전 조건(고도, 속도, 쓰로틀 각도) 6개, 고장모드 (HPC,
 
 본 문제는 시계열 데이셋이라서 이에 강한 딥러닝 방식이 더 좋은 점수를 받는다. 
 하지만 이 문제가 처음 공개된 당시와 마찬가지로 머신러닝 모델로 예측한다.
-[![FD-001 점수 표.png]](https://cdn.discordapp.com/attachments/1451496750023049256/1468508260284764222/image.png?ex=698e29a4&is=698cd824&hm=5c040b76080a4a45a753e5a22b2a86ddd729d568d79f35858edae3c64f459ed6&)  
+[![FD-001 점수 표.png](https://cdn.discordapp.com/attachments/1451496750023049256/1468508260284764222/image.png?ex=698e29a4&is=698cd824&hm=5c040b76080a4a45a753e5a22b2a86ddd729d568d79f35858edae3c64f459ed6&)]
 출처 : 제미나이
 
 ### 컬럼 설명 (Data Dictionary)
