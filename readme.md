@@ -108,11 +108,25 @@ train_df["WfP3C[pph/psi]"] = train_df["phi[pph/psi]"]/np.sqrt(train_df["T2[R]"]/
 
       -> FD-001에서는 'CV 기반 최적화' 방식을 사용
 
+* 엔진 별 최대 수명이 125-130 정도에서 시작하는 것을 볼수 있다.
+![fd-001 엔진 별 최대 수명](https://github.com/user-attachments/assets/80616053-2bf6-4247-8394-ee759525d244)
+
    - GroupShuffleSplit
       1. 이 데이터 셋은 시계열 데이터이기 때문에 data leakage를 방지하기 위해 Train_test_split 대신 GroupShuffleSplit을 사용한다.
 
    - Safe margin 
-      1. nasa score는 late prediction에 큰 감점을 매기기 때문에 예측 값에 마이너스 수치를 반영해 이를 예방하는 safe margin을 사용한다. 
+      1. nasa score는 late prediction에 큰 감점을 매기기 때문에 예측 값에 마이너스 수치를 반영해 이를 예방하는 safe margin을 사용한다.
+
+   - EDA 및 Feature Selection
+      1. RUL 과 컬럼과의 산점도를 보면 아래와 같이 직선형과 일정 추세를 같은 분포도로 구분 된다. 직선형은 상수형 데이터로 RUL와 관계성이 낮아 드롭한다. 단, 선택에 따라 운전조건 등의 메타데이터 컬럼은 이후 분석을 위해 모델 학습에서만 배제할수도 있다.
+
+      ![FD-001 산점도](https://github.com/user-attachments/assets/6179a8b9-2c49-4bf0-ad36-71a581e40451)
+
+      2. 이 문제에서는 엔진 고장시 온도나 압력이 동반 상승하는 효과로 인해 단순히 RUL과 상관 계수가 너무 크다고 삭제할수 없다.
+      3. 상관계수가 0.1 미만이거나 위 파생 컬럼 생성에 의해 중간 과정 발생 컬럼, 중복 컬럼은 삭제한다. 이는 다중공선성 체크나 RUL에 따른 변화도 차이를 비교하여 판단할수 있다.
+      ![컬럼 별 중복성 체크](https://github.com/user-attachments/assets/a4c4250c-1bd6-4ff8-b68b-2f5359e4ba02)
+
+
 
 [추가 설명]
 1. 시계열 데이터: **시계열 데이터(Time-Series Data)**란 **"시간의 흐름에 따라 순서대로 기록된 데이터"**
@@ -210,9 +224,19 @@ optuna 하이퍼 튜닝에서도 nasa score를 기준으로 학습되게 수정�
 ![FD-001 최고 점수.png](https://cdn.discordapp.com/attachments/1451496750023049256/1469198194100539514/image.png?ex=698e0931&is=698cb7b1&hm=9b5f11fc293621e85b3eb3a3fc4f7edf625b68520911852e7f817580c31503aa&)
 
 
+[모델별 결과 시각화 자료]
+
+![FD-001 Real RUL 비교 SVR](https://github.com/user-attachments/assets/7ecc0075-9e41-4405-ba1b-f166d8589fb2)
+
+![FD-001 Real RUL 비교 가중치 앙상블](https://github.com/user-attachments/assets/7e94105c-4569-4d69-b1c0-53502041aff7)
+
+<img width="2151" height="1183" alt="output" src="https://github.com/user-attachments/assets/d9d93258-2495-4da7-91f9-a4a33de28332" />
+
+* 위 빨간 대각선은 실제 RUL 이고 RUL 클리핑에 의해 수평으로 예측 되다가 대각선에 밀착하는 형태를 볼수있다.    
+그래프만 보면 가중치 앙상블이 점수가 좋을것 같지만 late prediction 감점이 큰 nasa score 특성 때문에 svr의 점수가 더 좋다.
 
 
-
+* 아래가 모델별 late prediction의 비율을 볼수 있는 자료로 빨간 영역이 late prediction 이다.
 
 
 
@@ -272,7 +296,9 @@ print(test_df.sort_values(by='nasa_penalty', ascending=False).head(10))
 따라서 아래와 같은 전처리를 진행함.
 
 [전처리]
-1) 운전조건에 따라 클러스터링 
+1) 운전조건에 따라 클러스터링
+<img width="909" height="717" alt="클러스터링 이미지" src="https://github.com/user-attachments/assets/ad6b5845-563b-42ee-8c2a-318b7cfb3b51" />
+
 2) 각 클러스터별로 정규화 (k-means 방식,하드 클러스터링)
 3) z-score가 ±3을 벗어나는 이상치를 clipping 한다
 4) 노이즈 제거함수 add_advanced_features를 이용해 스무딩을 하고 EMA를 생성한다.
@@ -281,6 +307,8 @@ print(test_df.sort_values(by='nasa_penalty', ascending=False).head(10))
 3. 그런데 정규화 이후 노이즈 제거 과정에서 파생된 컬럼이 너무 많아 히트맵 가독성이 떨어지고 EDA나 feature selection 과정이 번거로워졌다. 따라서 테스트 데이터 생성 전으로 이동
 4. farB[-] 산포도에서 특정 클러스터만 두 가지 상수 값을 같는 이봉 분포 현상을 발견 (특정 고도등의 조건으로 작동하는 전자식 밸브 또는 이상 계측값이 원인)    
 이로 인해 파생 컬럼인  W15, W24, W2, Wa36 에도 직선형이 혼재
+![FD_002_운전 조건으로만 클러스터링 결과](https://github.com/user-attachments/assets/a75a8a07-cf47-4be4-affb-d4e8fe373b5a)
+
 5. 이를 클러스터 안에 세부 정규화 조건인 mode_id 를 추가 해 정규화 과정에서 한 상수값을 제거. 또한, 모델이 학습할때 어느 클러스터인지 알 수 있게 'cluster' 컬럼을 onehot encoding으로 추가한다.
 6. 머신러닝 모델 학습 결과 에측 결과가 rul 직선 그래프를 전혀 따라가지 않음.
 7. rul clipping이 데이터 학스에 사용되는 데이터프레임이 아니라 원본 데이터프레임에 적용된 것을 확인. 이를 수정
