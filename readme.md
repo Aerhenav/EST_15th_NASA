@@ -226,9 +226,9 @@ optuna 하이퍼 튜닝에서도 nasa score를 기준으로 학습되게 수정�
 
 [모델별 결과 시각화 자료]
 
-![FD-001 Real RUL 비교 SVR](https://github.com/user-attachments/assets/7ecc0075-9e41-4405-ba1b-f166d8589fb2)
+![FD-001 Real RUL 비교 SVR (2)](https://github.com/user-attachments/assets/f57c28a2-7465-4ac6-89ea-f9487253e1f1)
 
-![FD-001 Real RUL 비교 가중치 앙상블](https://github.com/user-attachments/assets/7e94105c-4569-4d69-b1c0-53502041aff7)
+![FD-001 Real RUL 비교 가중치 앙상블 (2)](https://github.com/user-attachments/assets/08d72344-4786-457a-bf44-403a849617fc)
 
 <img width="2151" height="1183" alt="output" src="https://github.com/user-attachments/assets/d9d93258-2495-4da7-91f9-a4a33de28332" />
 
@@ -297,7 +297,7 @@ print(test_df.sort_values(by='nasa_penalty', ascending=False).head(10))
 
 [전처리]
 1) 운전조건에 따라 클러스터링
-<img width="909" height="717" alt="클러스터링 이미지" src="https://github.com/user-attachments/assets/ad6b5845-563b-42ee-8c2a-318b7cfb3b51" />
+<img width="909" height="717" alt="클러스터링 이미지" src="https://github.com/user-attachments/assets/5b6f6dc0-6add-4e46-ac8e-ba1c498c2ed7" />
 
 2) 각 클러스터별로 정규화 (k-means 방식,하드 클러스터링)
 3) z-score가 ±3을 벗어나는 이상치를 clipping 한다
@@ -307,7 +307,7 @@ print(test_df.sort_values(by='nasa_penalty', ascending=False).head(10))
 3. 그런데 정규화 이후 노이즈 제거 과정에서 파생된 컬럼이 너무 많아 히트맵 가독성이 떨어지고 EDA나 feature selection 과정이 번거로워졌다. 따라서 테스트 데이터 생성 전으로 이동
 4. farB[-] 산포도에서 특정 클러스터만 두 가지 상수 값을 같는 이봉 분포 현상을 발견 (특정 고도등의 조건으로 작동하는 전자식 밸브 또는 이상 계측값이 원인)    
 이로 인해 파생 컬럼인  W15, W24, W2, Wa36 에도 직선형이 혼재
-![FD_002_운전 조건으로만 클러스터링 결과](https://github.com/user-attachments/assets/a75a8a07-cf47-4be4-affb-d4e8fe373b5a)
+![FD_002_운전 조건으로만 클러스터링 결과 (2)](https://github.com/user-attachments/assets/ff30fd9c-eec7-453e-b97a-54adb2dca9db)
 
 5. 이를 클러스터 안에 세부 정규화 조건인 mode_id 를 추가 해 정규화 과정에서 한 상수값을 제거. 또한, 모델이 학습할때 어느 클러스터인지 알 수 있게 'cluster' 컬럼을 onehot encoding으로 추가한다.
 6. 머신러닝 모델 학습 결과 에측 결과가 rul 직선 그래프를 전혀 따라가지 않음.
