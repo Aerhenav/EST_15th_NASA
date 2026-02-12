@@ -36,7 +36,7 @@ FD-004: 운전 조건(고도, 속도, 쓰로틀 각도) 6개, 고장모드 (HPC,
 
 -> 이번 프로젝트에서는 FD-001과 FD-002 2가지를 다룬다.
 
-[![엔진 부위 설명.jpg](<attachment:엔진 부위 설명.jpg>)](https://media.discordapp.net/attachments/1451496750023049256/1471382306882191543/692429fcd40a4838.jpg?ex=698ebb0e&is=698d698e&hm=73b58b97fe5ba9593b3ab8f639653753449fe1a61c4ef8b635c563f563cd85ad&=&format=webp)
+[![엔진 부위 설명.jpg](https://media.discordapp.net/attachments/1451496750023049256/1471382306882191543/692429fcd40a4838.jpg?ex=698ebb0e&is=698d698e&hm=73b58b97fe5ba9593b3ab8f639653753449fe1a61c4ef8b635c563f563cd85ad&=&format=webp)
 
 > FD001 (Train: train_FD001.txt / Test: test_FD001.txt / RUL: RUL_FD001.txt)
    - 학습 엔진 수: 100개
