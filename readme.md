@@ -297,7 +297,7 @@ print(test_df.sort_values(by='nasa_penalty', ascending=False).head(10))
 
 [전처리]
 1) 운전조건에 따라 클러스터링
-<img width="909" height="717" alt="클러스터링 이미지" src="https://github.com/user-attachments/assets/5b6f6dc0-6add-4e46-ac8e-ba1c498c2ed7" />
+<img width="450" height="340" alt="클러스터링 이미지" src="https://github.com/user-attachments/assets/72b099a5-1c90-4715-93c8-7526d0ab66f4" />
 
 2) 각 클러스터별로 정규화 (k-means 방식,하드 클러스터링)
 3) z-score가 ±3을 벗어나는 이상치를 clipping 한다
