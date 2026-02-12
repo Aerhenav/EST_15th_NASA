@@ -114,7 +114,9 @@ FD-004: 운전 조건(고도, 속도, 쓰로틀 각도) 6개, 고장모드 (HPC,
 
 본 문제는 시계열 데이셋이라서 이에 강한 딥러닝 방식이 더 좋은 점수를 받는다. 
 하지만 이 문제가 처음 공개된 당시와 마찬가지로 머신러닝 모델로 예측한다.
-[![FD-001 점수 표.png](https://cdn.discordapp.com/attachments/1451496750023049256/1468508260284764222/image.png?ex=698e29a4&is=698cd824&hm=5c040b76080a4a45a753e5a22b2a86ddd729d568d79f35858edae3c64f459ed6&)]
+
+![FD-001 점수 표.png](https://cdn.discordapp.com/attachments/1451496750023049256/1468508260284764222/image.png?ex=698e29a4&is=698cd824&hm=5c040b76080a4a45a753e5a22b2a86ddd729d568d79f35858edae3c64f459ed6&)
+
 출처 : 제미나이
 
 ### 컬럼 설명 (Data Dictionary)
