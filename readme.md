@@ -226,7 +226,8 @@ optuna 하이퍼 튜닝에서도 nasa score를 기준으로 학습되게 수정�
 * **하이퍼파라미터 튜닝**: 데이터 양이 FD001보다 많으므로(엔진 260개), 과적합을 방지하기 위해 더 정교한 교차 검증(GroupShuffleSplit)과 Optuna를 통한 파라미터 최적화를 수행했습니다.
 
 **[목표 점수]**
-[FD-002 점수 표.png](https://cdn.discordapp.com/attachments/1451496750023049256/1470417377551450134/image.png?ex=698e8425&is=698d32a5&hm=e4b18ce31530a3362a1dd85e15096c16536479edca437f59799f4fd9c6c85cbb&)
+
+![FD-002 점수 표.png](https://cdn.discordapp.com/attachments/1451496750023049256/1470417377551450134/image.png?ex=698e8425&is=698d32a5&hm=e4b18ce31530a3362a1dd85e15096c16536479edca437f59799f4fd9c6c85cbb&)
 
 **[시행착오 및 개선 사항]**
 
@@ -258,7 +259,7 @@ optuna 하이퍼 튜닝에서도 nasa score를 기준으로 학습되게 수정�
 15. Safe Margin 적용: NASA Score의 특성(Late Prediction 페널티)을 고려하여 예측값에 일정한 마진을 두어 안정적인 점수 확보.
 16. 최종 모델: K-Fold 앙상블과 Optuna, AutoGluon을 통해 단일 모델 대비 Score를 개선.
 
-[FD-002 점수 표.png](https://cdn.discordapp.com/attachments/388576721634590720/1471407252614418493/image.png?ex=698ed24a&is=698d80ca&hm=221ceb47dd80786e536f78a854139ea532e5a6b9b590aae2223e00b78c2ab8ec&)
+![FD-002 점수 표.png](https://cdn.discordapp.com/attachments/388576721634590720/1471407252614418493/image.png?ex=698ed24a&is=698d80ca&hm=221ceb47dd80786e536f78a854139ea532e5a6b9b590aae2223e00b78c2ab8ec&)
     
 
 **1.초기[CNN + LSTM + Attention 구조로 시계열 패턴 학습]** 
