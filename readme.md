@@ -61,7 +61,7 @@ FD-004: 운전 조건(고도, 속도, 쓰로틀 각도) 6개, 고장모드 (HPC,
       3. EMA(지수이동평균)
       * 아래 이미지는 FD-002에서 나올 클러스터링과 노이즈 제거의 효과를 시각화 한 것이다.
          
-<img width="1167" height="292" alt="노이즈 제거" src="https://github.com/user-attachments/assets/f41f9b48-1e5a-4af7-a06a-e3a4fe1cd00a" />
+<img width="583" height="143" alt="노이즈 제거" src="https://github.com/user-attachments/assets/2ab11cb1-822c-4c76-95a8-3e292c7e6299" />
 
    - 컬럼 라벨링 및 파생 컬럼 생성
       1. op_setting_1, sensor_1 등의 컬럼 명이 아닌 실제 센서 내용을 알수있는 컬럼 명으로 라벨링
