@@ -28,10 +28,10 @@ NASA는 실제 엔진과 매우 유사한 물리적 특성을 가진 고정밀 �
 
 
 [난이도 별 차이]
-FD-001: 운전 조건(고도, 속도, 쓰로틀 각도) 1개, 고장모드 (HPC, 고압압축기) 1개
-FD-002: 운전 조건(고도, 속도, 쓰로틀 각도) 6개, 고장모드 (HPC, 고압압축기) 1개
-FD-003: 운전 조건(고도, 속도, 쓰로틀 각도) 1개, 고장모드 (HPC, 고압압축기 / LPT, 저압 터빈) 2개
-FD-004: 운전 조건(고도, 속도, 쓰로틀 각도) 6개, 고장모드 (HPC, 고압압축기 / LPT, 저압 터빈) 2개
+FD-001: 운전 조건(고도, 속도, 쓰로틀 각도) 1개, 고장모드 (HPC, 고압압축기) 1개    
+FD-002: 운전 조건(고도, 속도, 쓰로틀 각도) 6개, 고장모드 (HPC, 고압압축기) 1개    
+FD-003: 운전 조건(고도, 속도, 쓰로틀 각도) 1개, 고장모드 (HPC, 고압압축기 / LPT, 저압 터빈) 2개    
+FD-004: 운전 조건(고도, 속도, 쓰로틀 각도) 6개, 고장모드 (HPC, 고압압축기 / LPT, 저압 터빈) 2개    
 난이도는 FD-001, FD-003, FD-002, FD-004 순서로 어렵다.
 
 -> 이번 프로젝트에서는 FD-001과 FD-002 2가지를 다룬다.
@@ -59,10 +59,29 @@ FD-004: 운전 조건(고도, 속도, 쓰로틀 각도) 6개, 고장모드 (HPC,
       1. roliing window 방식
       2. Savitzky-Golay 필터
       3. EMA(지수이동평균)
+      * 아래 이미지는 FD-002에서 나올 클러스터링과 노이즈 제거의 효과를 시각화 한 것이다.
+         
+<img width="1167" height="292" alt="노이즈 제거" src="https://github.com/user-attachments/assets/f41f9b48-1e5a-4af7-a06a-e3a4fe1cd00a" />
 
    - 컬럼 라벨링 및 파생 컬럼 생성
       1. op_setting_1, sensor_1 등의 컬럼 명이 아닌 실제 센서 내용을 알수있는 컬럼 명으로 라벨링
       2. 공기 유동 비율, 압력 비 등의 비율 파생 컬럼을 만들어 무차원수가 되어 온도나 압력등의 외부 요인의 영향을 제거한다. 현상을 해석하기 쉬워진다.
+
+rain_df["P50[psi]"] = train_df["epr[-]"]*train_df["P2[psi]"]
+
+train_df["Fan.PR[-]"] = train_df["P15[psi]"]/train_df["P2[psi]"]
+train_df["LPC.TR[-]"] = train_df["T24[R]"]/train_df["T2[R]"] # Fan core + LPC
+train_df["HPC.TR[-]"] = train_df["T30[R]"]/train_df["T24[R]"]
+
+train_df["OPR[-]"] = train_df["P30[psi]"]/train_df["P2[psi]"]
+
+train_df["Wf[pph]"] = train_df["phi[pph/psi]"]*train_df["Ps30[psi]"]
+train_df["Wa36[lbm/s]"] = train_df["Wf[pph]"]/3600.0 / train_df["farB[-]"]
+train_df["W24[lbm/s]"] = train_df["Wa36[lbm/s]"] + train_df["W31[lbm/s]"] + train_df["W32[lbm/s]"] # core. htBleed ? 
+train_df["W15[lbm/s]"] = train_df["W24[lbm/s]"]*train_df["BPR[-]"] # bypass
+train_df["W2[lbm/s]"] = train_df["W15[lbm/s]"] + train_df["W24[lbm/s]"] # overall
+
+train_df["WfP3C[pph/psi]"] = train_df["phi[pph/psi]"]/np.sqrt(train_df["T2[R]"]/518.67)
 
    - RUL Clipping
       1. 이 문제의 핵심 전처리 전략이다.
