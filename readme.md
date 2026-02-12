@@ -280,7 +280,7 @@ for e in errors:
 test_df['nasa_penalty'] = specific_nasa_scores
 print(test_df.sort_values(by='nasa_penalty', ascending=False).head(10))
 ```
-![NASA Score 기여도 계산.png](https://cdn.discordapp.com/attachments/1451496750023049256/1471413297377968220/image.png?ex=698ed7eb&is=698d866b&hm=b07c2dddef6b1788d29a20b671512c36b6c18de6f8f4a59519b0f025268f27ee&)
+![NASA Score 기여도 계산.png](https://cdn.discordapp.com/attachments/388576721634590720/1471498168024699043/image.png?ex=698f26f6&is=698dd576&hm=f501cb3e426847e83cd7609898e0af01ccc7b430a3afc7194534f393bc96000d&)
 
 * **운전 조건별 분리 처리**: 단순히 데이터를 합쳐 학습했을 때보다, 운전 조건(6개)을 식별하여 특징(Feature)에 반영했을 때 예측 성능이 향상됨을 확인했습니다.
 * **하이퍼파라미터 튜닝**: 데이터 양이 FD001보다 많으므로(엔진 260개), 과적합을 방지하기 위해 더 정교한 교차 검증(GroupShuffleSplit)과 Optuna를 통한 파라미터 최적화를 수행했습니다.
