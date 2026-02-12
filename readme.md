@@ -430,6 +430,9 @@ over 폭탄을 줄임 → NASA 점수가 크게 내려감 →low RUL 구간의 �
 **● 결론**: TOP-10 폭탄 엔진을 직접 겨냥해, 조건별 정규화 + median_lastk + squash 최적화로 꼬리를 제거함” (7k → 5k)
 **NASA Score** : 약 5,000점대
 
+<img width="173" height="73" alt="딥러닝 점수" src="https://github.com/user-attachments/assets/fe7bcd8b-8b0d-40a0-81c2-70e099ec75bf" />
+
+
 
 **(결론)**
 현재 단계의 성과는 모델 복잡화가 아니라, 조건별 스케일링 + last-k median + squash 최적화로 NASA 점수를 터뜨리는 ‘꼬리’를 체계적으로 제거한 결과다.
