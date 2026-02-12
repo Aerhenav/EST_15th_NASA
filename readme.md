@@ -352,6 +352,7 @@ print(test_df.sort_values(by='nasa_penalty', ascending=False).head(10))
 <img width="379" height="212" alt="1  초기-GAP + Dense" src="https://github.com/user-attachments/assets/3fc2c72e-f5fb-4d90-8cd0-a34d6ed970dd" />
 
 **● 결론**: 이 구조는 RMSE/MAE 개선엔 강하지만 NASA 스코어 기준으로 폭탄을 제어하는 장치가 없어서 딥러닝 모델로 평균 RUL 예측을 만들었지만 NASA 점수는 폭탄 엔진 때문에 매우 높았다.
+
 **NASA Score:** 수만~수백만
 
 
@@ -367,6 +368,7 @@ over 폭탄을 줄임 → NASA 점수가 크게 내려감 →low RUL 구간의 �
  <img width="418" height="513" alt="2  중기-Multi-seed 앙상블(폭탄 유닛 줄이기)" src="https://github.com/user-attachments/assets/72d0510f-1159-4518-90af-8fd2a9f5eeb2" />
 
 **• 결론 :** NASA는 over에 더 가혹 → loss에서 over를 더 강하게 벌주기 시작 결과적으로 “폭탄 엔진의 over/under 극단”이 줄어듦 NASA의 비대칭 구조(특히 over 벌점)를 loss에 반영하고 앙상블로 분산을 줄여 14,000대까지 낮췄다.
+
 **NASA Score:** 수만 → 14,000점대
 
 
@@ -407,6 +409,7 @@ over 폭탄을 줄임 → NASA 점수가 크게 내려감 →low RUL 구간의 �
 
 
 **● 결론 :** 모델이 NASA 친화적이 되면서 평균적으로 좋아짐 (14k → 7k)
+
 **NASA Score :** 약 14,000 → 10,000 → 7,000대
 
 
@@ -428,6 +431,7 @@ over 폭탄을 줄임 → NASA 점수가 크게 내려감 →low RUL 구간의 �
 
 
 **● 결론**: TOP-10 폭탄 엔진을 직접 겨냥해, 조건별 정규화 + median_lastk + squash 최적화로 꼬리를 제거함” (7k → 5k)
+
 **NASA Score** : 약 5,000점대
 
 <img width="173" height="73" alt="딥러닝 점수" src="https://github.com/user-attachments/assets/fe7bcd8b-8b0d-40a0-81c2-70e099ec75bf" />
