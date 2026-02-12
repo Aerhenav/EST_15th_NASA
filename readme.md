@@ -36,7 +36,7 @@ FD-004: 운전 조건(고도, 속도, 쓰로틀 각도) 6개, 고장모드 (HPC,
 
 -> 이번 프로젝트에서는 FD-001과 FD-002 2가지를 다룬다.
 
-[![엔진 부위 설명.jpg](https://media.discordapp.net/attachments/1451496750023049256/1471382306882191543/692429fcd40a4838.jpg?ex=698ebb0e&is=698d698e&hm=73b58b97fe5ba9593b3ab8f639653753449fe1a61c4ef8b635c563f563cd85ad&=&format=webp)]
+![엔진 부위 설명.jpg](https://media.discordapp.net/attachments/1451496750023049256/1471382306882191543/692429fcd40a4838.jpg?ex=698ebb0e&is=698d698e&hm=73b58b97fe5ba9593b3ab8f639653753449fe1a61c4ef8b635c563f563cd85ad&=&format=webp)
 
 > FD001 (Train: train_FD001.txt / Test: test_FD001.txt / RUL: RUL_FD001.txt)
    - 학습 엔진 수: 100개
@@ -49,8 +49,9 @@ FD-004: 운전 조건(고도, 속도, 쓰로틀 각도) 6개, 고장모드 (HPC,
 - 항공기의 경우 남은 수명을 더 적게 예측해 미리 사용정지 할경우 생기는 문제는 심각하지 않지만 반대 경우 운전 중 사고가 나서 심각한 문제가 발생할 수 있습니다.
 - 따라서 작은 RUL 예측(early prediction)에 비해 큰 RUL 예측(late prediction)에 대해 훨씬 큰 페널티를 매기는 nasa scroring 방식을 사용합니다.
 
-[![nasa scoring 공식.jpg](https://cdn.discordapp.com/attachments/1451496750023049256/1471382306181611520/nasa_scoring_.jpg?ex=698ebb0e&is=698d698e&hm=3fd9f5508b18505ce3c085dbb8bc3c004ad3625b717483fec383e7ff811b5eb0&)]
-![nasa scoring 그래프.jpg](https://cdn.discordapp.com/attachments/1451496750023049256/1471382306441920764/nasa_scoring_.jpg?ex=698ebb0e&is=698d698e&hm=5300f1623be7b6e78f1c273ad42ec547186abe2d8a621146b73b34d9ce11a183&)]
+![nasa scoring 공식.jpg](https://cdn.discordapp.com/attachments/1451496750023049256/1471382306181611520/nasa_scoring_.jpg?ex=698ebb0e&is=698d698e&hm=3fd9f5508b18505ce3c085dbb8bc3c004ad3625b717483fec383e7ff811b5eb0&)
+
+![nasa scoring 그래프.jpg](https://cdn.discordapp.com/attachments/1451496750023049256/1471382306441920764/nasa_scoring_.jpg?ex=698ebb0e&is=698d698e&hm=5300f1623be7b6e78f1c273ad42ec547186abe2d8a621146b73b34d9ce11a183&)
 
 [FD-001 문제해결 핵심 전략]
 
@@ -182,4 +183,4 @@ FD-004: 운전 조건(고도, 속도, 쓰로틀 각도) 6개, 고장모드 (HPC,
 7. 강사님의 조언으로 하이퍼튜닝에서 xgboost와 lightgbm에 objectives로 nasa score 커스텀 함수를 넣어 최적화 학습하게 하였습니다.    
 optuna 하이퍼 튜닝에서도 nasa score를 기준으로 학습되게 수정하여 아래 최고 성적 도출
 
-[![FD-001 최고 점수.png]](https://cdn.discordapp.com/attachments/1451496750023049256/1469198194100539514/image.png?ex=698e0931&is=698cb7b1&hm=9b5f11fc293621e85b3eb3a3fc4f7edf625b68520911852e7f817580c31503aa&)
+![FD-001 최고 점수.png](https://cdn.discordapp.com/attachments/1451496750023049256/1469198194100539514/image.png?ex=698e0931&is=698cb7b1&hm=9b5f11fc293621e85b3eb3a3fc4f7edf625b68520911852e7f817580c31503aa&)
