@@ -297,6 +297,7 @@ print(test_df.sort_values(by='nasa_penalty', ascending=False).head(10))
 
 [전처리]
 1) 운전조건에 따라 클러스터링
+
 <img width="450" height="340" alt="클러스터링 이미지" src="https://github.com/user-attachments/assets/72b099a5-1c90-4715-93c8-7526d0ab66f4" />
 
 2) 각 클러스터별로 정규화 (k-means 방식,하드 클러스터링)
@@ -307,6 +308,7 @@ print(test_df.sort_values(by='nasa_penalty', ascending=False).head(10))
 3. 그런데 정규화 이후 노이즈 제거 과정에서 파생된 컬럼이 너무 많아 히트맵 가독성이 떨어지고 EDA나 feature selection 과정이 번거로워졌다. 따라서 테스트 데이터 생성 전으로 이동
 4. farB[-] 산포도에서 특정 클러스터만 두 가지 상수 값을 같는 이봉 분포 현상을 발견 (특정 고도등의 조건으로 작동하는 전자식 밸브 또는 이상 계측값이 원인)    
 이로 인해 파생 컬럼인  W15, W24, W2, Wa36 에도 직선형이 혼재
+
 ![FD_002_운전 조건으로만 클러스터링 결과 (2)](https://github.com/user-attachments/assets/ff30fd9c-eec7-453e-b97a-54adb2dca9db)
 
 5. 이를 클러스터 안에 세부 정규화 조건인 mode_id 를 추가 해 정규화 과정에서 한 상수값을 제거. 또한, 모델이 학습할때 어느 클러스터인지 알 수 있게 'cluster' 컬럼을 onehot encoding으로 추가한다.
