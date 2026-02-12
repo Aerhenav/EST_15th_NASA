@@ -200,7 +200,7 @@ optuna 하이퍼 튜닝에서도 nasa score를 기준으로 학습되게 수정�
 
 ## AI 모델 개발 15회차 1차 팀프로젝트 - NASA Turbofan Jet Engine Data Set 터보엔진 유지보전 문제_FD002
 
-**# 1.초기[CNN + LSTM + Attention 구조로 시계열 패턴 학습]** 
+** 1.초기[CNN + LSTM + Attention 구조로 시계열 패턴 학습]** 
 
 **-Conv1D:** 짧은 구간 센서 변화(패턴/노이즈) 포착
 
@@ -222,7 +222,7 @@ optuna 하이퍼 튜닝에서도 nasa score를 기준으로 학습되게 수정�
 **NASA Score:** 수만~수백만
 
 
-**##2. 중기[NASA 비대칭(Asymmetric) + 가중 Loss 도입]** 
+**2. 중기[NASA 비대칭(Asymmetric) + 가중 Loss 도입]** 
 **- NASA 비대칭 Loss :** NASA는 over를 더 싫어한다는 규칙을 딥러닝 loss에 직접 주입한 순간, 점수가 본격적으로 내려가기 시작
 over 폭탄을 줄임 → NASA 점수가 크게 내려감 →low RUL 구간의 불안정 예측을 줄임 → 폭탄 unit 감소 → 그래서 ~14,000대까지 내려가는 계기가 됨
 
@@ -237,7 +237,7 @@ over 폭탄을 줄임 → NASA 점수가 크게 내려감 →low RUL 구간의 �
 
 
 
-**# 3. 후기[위험 센서 억제(감쇠/드랍), TOP-10 엔진 분석, 후처리 (squash/piecewise), unit-last robust 집계(median_lastk]**
+**3. 후기[위험 센서 억제(감쇠/드랍), TOP-10 엔진 분석, 후처리 (squash/piecewise), unit-last robust 집계(median_lastk]**
 **• 모델CNN/LSTM(+Attention) 구조 유지/개선**
 **1. Loss는 동일**
 **2. CNN :** 센서 데이터의 “짧은 구간 패턴(국소 변화)” 추출
@@ -274,7 +274,8 @@ over 폭탄을 줄임 → NASA 점수가 크게 내려감 →low RUL 구간의 �
 **NASA Score :** 약 14,000 → 10,000 → 7,000대
 
 
-**# 4. 현재**
+
+**4. 현재**
 **1) 운영조건(op_cluster) 별 스케일링을 “train과 test 모두”에 적용 :** op_cluster별 스케일링으로 “조건발 센서 튐”을 줄였고
 
 <img width="581" height="291" alt="4  현재-운영조건(op_cluster) 별 스케일링을 train, test 모두에 적용" src="https://github.com/user-attachments/assets/953004f1-9d74-4847-b96f-5847464c7dc6" />
