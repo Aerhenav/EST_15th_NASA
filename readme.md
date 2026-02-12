@@ -200,12 +200,16 @@ optuna 하이퍼 튜닝에서도 nasa score를 기준으로 학습되게 수정�
 
 ## AI 모델 개발 15회차 1차 팀프로젝트 - NASA Turbofan Jet Engine Data Set 터보엔진 유지보전 문제_FD002
 **###1. 초기[CNN + LSTM + Attention 구조로 시계열 패턴 학습]** 
+
 **-Conv1D:** 짧은 구간 센서 변화(패턴/노이즈) 포착
 <img width="505" height="73" alt="1  초기-Conv1D" src="https://github.com/user-attachments/assets/7625a004-1e8a-4f8f-afe3-2bb82bba1756" />
+
 ** -BiLSTM **: 시간 흐름(열화 진행)을 학습
 <img width="545" height="85" alt="1  초기-BiLSTM " src="https://github.com/user-attachments/assets/e0cb04a6-740d-4dac-891a-0632b47bd30e" />
+
  -Attention : 중요한 시점(특히 고장 직전)을 강조
 <img width="533" height="102" alt="1  초기-Attention " src="https://github.com/user-attachments/assets/a54f9802-db18-491a-a74a-b3a708441b1c" />
+
 ** -GAP + Dense :** 전체 시퀀스를 요약해서 RUL로 회귀
 <img width="379" height="212" alt="1  초기-GAP + Dense" src="https://github.com/user-attachments/assets/3fc2c72e-f5fb-4d90-8cd0-a34d6ed970dd" />
 
@@ -217,8 +221,10 @@ optuna 하이퍼 튜닝에서도 nasa score를 기준으로 학습되게 수정�
 **- NASA 비대칭 Loss :** NASA는 over를 더 싫어한다는 규칙을 딥러닝 loss에 직접 주입한 순간, 점수가 본격적으로 내려가기 시작
 over 폭탄을 줄임 → NASA 점수가 크게 내려감 →low RUL 구간의 불안정 예측을 줄임 → 폭탄 unit 감소 → 그래서 ~14,000대까지 내려가는 계기가 됨
 <img width="602" height="372" alt="2  중기-NASA 비대칭 Loss" src="https://github.com/user-attachments/assets/fbde8266-5e79-42c2-86f2-dd1ca13b4f51" />
+
 **- Multi-seed 앙상블(폭탄 유닛 줄이기) :** seed마다 “폭탄 유닛이 생기는 위치”가 달라지는 경향이 있음, 앙상블은 이를 평균내서 극단 오차를 줄임
-  <img width="418" height="513" alt="2  중기-Multi-seed 앙상블(폭탄 유닛 줄이기)" src="https://github.com/user-attachments/assets/72d0510f-1159-4518-90af-8fd2a9f5eeb2" />
+
+ <img width="418" height="513" alt="2  중기-Multi-seed 앙상블(폭탄 유닛 줄이기)" src="https://github.com/user-attachments/assets/72d0510f-1159-4518-90af-8fd2a9f5eeb2" />
 
 **• 결론 :** NASA는 over에 더 가혹 → loss에서 over를 더 강하게 벌주기 시작 결과적으로 “폭탄 엔진의 over/under 극단”이 줄어듦 NASA의 비대칭 구조(특히 over 벌점)를 loss에 반영하고 앙상블로 분산을 줄여 14,000대까지 낮췄다.
 **NASA Score:** 수만 → 14,000점대
