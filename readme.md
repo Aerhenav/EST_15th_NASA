@@ -1,3 +1,4 @@
+## AI 모델 개발 15회차 1차 팀프로젝트 - NASA Turbofan Jet Engine Data Set 터보엔진 유지보전 문제_FD001
 [문제 개요]     
 NASA C-MAPSS(Commercial Modular Aero-Propulsion System Simulation) 데이터셋은 예지 보전(Predictive Maintenance) 분야의 'Hello World'와 같은 매우 유명하고 중요한 데이터셋입니다.    
 
