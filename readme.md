@@ -1,4 +1,4 @@
-## AI 모델 개발 15회차 1차 팀프로젝트 - NASA Turbofan Jet Engine Data Set 터보엔진 유지보전 문제_FD001
+<img width="726" height="285" alt="image" src="https://github.com/user-attachments/assets/8967fb05-a53e-457e-a698-b438ba875357" />## AI 모델 개발 15회차 1차 팀프로젝트 - NASA Turbofan Jet Engine Data Set 터보엔진 유지보전 문제_FD001
 [문제 개요]     
 NASA C-MAPSS(Commercial Modular Aero-Propulsion System Simulation) 데이터셋은 예지 보전(Predictive Maintenance) 분야의 'Hello World'와 같은 매우 유명하고 중요한 데이터셋입니다.    
 
@@ -325,9 +325,9 @@ print(test_df.sort_values(by='nasa_penalty', ascending=False).head(10))
 15. Safe Margin 적용: NASA Score의 특성(Late Prediction 페널티)을 고려하여 예측값에 일정한 마진을 두어 안정적인 점수 확보.
 16. 최종 모델: K-Fold 앙상블과 Optuna, AutoGluon을 통해 단일 모델 대비 Score를 개선.
 
-![FD-002 점수 표.png](https://cdn.discordapp.com/attachments/388576721634590720/1471407252614418493/image.png?ex=698ed24a&is=698d80ca&hm=221ceb47dd80786e536f78a854139ea532e5a6b9b590aae2223e00b78c2ab8ec&)
+![FD-002 점수 표.png](https://cdn.discordapp.com/attachments/388576721634590720/1471499295021731882/image.png?ex=698f2803&is=698dd683&hm=2f003254024fdb3939aee05f7f8f5cc3b07eb809d609fbb575e1492d2c6843dc&)
     
-![FD-002 점수 표.png](https://cdn.discordapp.com/attachments/388576721634590720/1471461694831071232/image.png?ex=698f04fe&is=698db37e&hm=5c2a21660d7a6e3a532902a2b98c2e46f424741e6ece8d863908d4c8052bdbcf&)
+![FD-002 점수 표.png](https://cdn.discordapp.com/attachments/388576721634590720/1471498825725251731/image.png?ex=698f2793&is=698dd613&hm=6bfbed584b8b0cdad35980fc686dce1dd78185077960a86dcf8a01a1791c40f9&)
 
 
 
