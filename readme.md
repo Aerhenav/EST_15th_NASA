@@ -228,7 +228,6 @@ optuna 하이퍼 튜닝에서도 nasa score를 기준으로 학습되게 수정�
 errors = test_df['pred'].values - y_test
 specific_nasa_scores = []
 for e in errors:
-    # NASA Score 공식 적용 (e = pred - true)
     s = np.exp(e/13)-1 if e < 0 else np.exp(e/10)-1
     specific_nasa_scores.append(s)
 
