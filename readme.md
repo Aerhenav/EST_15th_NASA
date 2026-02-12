@@ -203,15 +203,19 @@ optuna 하이퍼 튜닝에서도 nasa score를 기준으로 학습되게 수정�
 **# 1.초기[CNN + LSTM + Attention 구조로 시계열 패턴 학습]** 
 
 **-Conv1D:** 짧은 구간 센서 변화(패턴/노이즈) 포착
+
 <img width="505" height="73" alt="1  초기-Conv1D" src="https://github.com/user-attachments/assets/7625a004-1e8a-4f8f-afe3-2bb82bba1756" />
 
 **-BiLSTM** : 시간 흐름(열화 진행)을 학습
+
 <img width="545" height="85" alt="1  초기-BiLSTM " src="https://github.com/user-attachments/assets/e0cb04a6-740d-4dac-891a-0632b47bd30e" />
 
 **-Attention** : 중요한 시점(특히 고장 직전)을 강조
+
 <img width="533" height="102" alt="1  초기-Attention " src="https://github.com/user-attachments/assets/a54f9802-db18-491a-a74a-b3a708441b1c" />
 
 **-GAP + Dense :** 전체 시퀀스를 요약해서 RUL로 회귀
+
 <img width="379" height="212" alt="1  초기-GAP + Dense" src="https://github.com/user-attachments/assets/3fc2c72e-f5fb-4d90-8cd0-a34d6ed970dd" />
 
 **● 결론**: 이 구조는 RMSE/MAE 개선엔 강하지만 NASA 스코어 기준으로 폭탄을 제어하는 장치가 없어서 딥러닝 모델로 평균 RUL 예측을 만들었지만 NASA 점수는 폭탄 엔진 때문에 매우 높았다.
@@ -221,9 +225,11 @@ optuna 하이퍼 튜닝에서도 nasa score를 기준으로 학습되게 수정�
 **##2. 중기[NASA 비대칭(Asymmetric) + 가중 Loss 도입]** 
 **- NASA 비대칭 Loss :** NASA는 over를 더 싫어한다는 규칙을 딥러닝 loss에 직접 주입한 순간, 점수가 본격적으로 내려가기 시작
 over 폭탄을 줄임 → NASA 점수가 크게 내려감 →low RUL 구간의 불안정 예측을 줄임 → 폭탄 unit 감소 → 그래서 ~14,000대까지 내려가는 계기가 됨
+
 <img width="602" height="372" alt="2  중기-NASA 비대칭 Loss" src="https://github.com/user-attachments/assets/fbde8266-5e79-42c2-86f2-dd1ca13b4f51" />
 
 **- Multi-seed 앙상블(폭탄 유닛 줄이기) :** seed마다 “폭탄 유닛이 생기는 위치”가 달라지는 경향이 있음, 앙상블은 이를 평균내서 극단 오차를 줄임
+
  <img width="418" height="513" alt="2  중기-Multi-seed 앙상블(폭탄 유닛 줄이기)" src="https://github.com/user-attachments/assets/72d0510f-1159-4518-90af-8fd2a9f5eeb2" />
 
 **• 결론 :** NASA는 over에 더 가혹 → loss에서 over를 더 강하게 벌주기 시작 결과적으로 “폭탄 엔진의 over/under 극단”이 줄어듦 NASA의 비대칭 구조(특히 over 벌점)를 loss에 반영하고 앙상블로 분산을 줄여 14,000대까지 낮췄다.
@@ -235,25 +241,32 @@ over 폭탄을 줄임 → NASA 점수가 크게 내려감 →low RUL 구간의 �
 **• 모델CNN/LSTM(+Attention) 구조 유지/개선**
 **1. Loss는 동일**
 **2. CNN :** 센서 데이터의 “짧은 구간 패턴(국소 변화)” 추출
+
 <img width="494" height="328" alt="3  후기-CNN, LSTM(Attention) 구조 유지,개선" src="https://github.com/user-attachments/assets/96f9097c-6081-4091-96ad-acd678b739ce" />
 
 **3. LSTM :** 시간 흐름(열화 진행)을 학습
+
 <img width="288" height="65" alt="3  후기-LSTM(열화 진행의 시간 흐름 학습) 코드" src="https://github.com/user-attachments/assets/ddabecdc-db7c-4478-ba93-9e7ec64d659b" />
 
 **4. Attention(MultiHeadAttention):** “어떤 시점이 중요한지” 자동으로 강조(특히 고장 직전 구간)고장 직전 예측 흔들림이 줄어듦
+
 <img width="433" height="65" alt="3  후기-Attention(MultiHeadAttention)" src="https://github.com/user-attachments/assets/d04a968b-f5fc-4728-80e2-d3bf7f474f48" />
 
 **• 핵심 후처리:**
 **1. 위험 센서 억제(감쇠/드랍) :** FD002는 운영조건별 센서 분포가 달라서, op_cluster별 정규화로 조건발 튐을 눌렀다.
+
 <img width="713" height="381" alt="3  후기-위험 센서 억제(op_cluster 기반 정규화로 감쇠)" src="https://github.com/user-attachments/assets/368ea584-166c-4b54-b8f8-bc74b5448568" />
 
 **2. TOP-10 엔진 분석 :** NASA는 최악 몇 개 엔진이 점수 대부분을 차지해서, penalty 상위 엔진을 먼저 찾았다.
+
 <img width="840" height="140" alt="3  후기-TOP-10 엔진 분석" src="https://github.com/user-attachments/assets/ec4b836f-3aa9-404b-9d67-258b1fdeb1e5" />
 
 **3. 후처리(squash/piecewise) :** 과대예측 꼬리를 눌러 over 지수벌점을 줄여 TOP-10 폭탄을 꺾었다.
+
 <img width="595" height="348" alt="3  후기-후처리(squash, piecewise)" src="https://github.com/user-attachments/assets/5a97ccd6-ba67-459b-b214-54e03a47aa70" />
 
 **4. unit-last robust 집계(median_lastk) :** 마지막 1개가 아니라 last-k의 median으로 이상치를 줄여 폭탄 엔진을 안정화했다.
+
 <img width="773" height="280" alt="3  후기-unit-last robust 집계(median_lastk)" src="https://github.com/user-attachments/assets/d5cc1060-0f08-4a30-abf5-45ca6d66a103" />
 
 
