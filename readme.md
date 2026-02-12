@@ -276,6 +276,11 @@ print(test_df.sort_values(by='nasa_penalty', ascending=False).head(10))
 ![FD-002 점수 표.png](https://cdn.discordapp.com/attachments/388576721634590720/1471407252614418493/image.png?ex=698ed24a&is=698d80ca&hm=221ceb47dd80786e536f78a854139ea532e5a6b9b590aae2223e00b78c2ab8ec&)
     
 
+
+
+
+## AI 모델 개발 15회차 1차 팀프로젝트 - NASA Turbofan Jet Engine Data Set 터보엔진 유지보전 문제_FD002-딥러닝
+
 **1.초기[CNN + LSTM + Attention 구조로 시계열 패턴 학습]** 
 
 **-Conv1D:** 짧은 구간 센서 변화(패턴/노이즈) 포착
