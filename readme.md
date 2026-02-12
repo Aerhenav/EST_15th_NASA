@@ -109,7 +109,7 @@ train_df["WfP3C[pph/psi]"] = train_df["phi[pph/psi]"]/np.sqrt(train_df["T2[R]"]/
       -> FD-001에서는 'CV 기반 최적화' 방식을 사용
 
 * 엔진 별 최대 수명이 125-130 정도에서 시작하는 것을 볼수 있다.
-![fd-001 엔진 별 최대 수명](https://github.com/user-attachments/assets/80616053-2bf6-4247-8394-ee759525d244)
+![fd-001 엔진 별 최대 수명 (2)](https://github.com/user-attachments/assets/22a021b0-6c5c-42e8-8461-cdcbc3ab8071)
 
    - GroupShuffleSplit
       1. 이 데이터 셋은 시계열 데이터이기 때문에 data leakage를 방지하기 위해 Train_test_split 대신 GroupShuffleSplit을 사용한다.
