@@ -202,9 +202,11 @@ optuna 하이퍼 튜닝에서도 nasa score를 기준으로 학습되게 수정�
 **###1. 초기[CNN + LSTM + Attention 구조로 시계열 패턴 학습]** 
 
 **-Conv1D:** 짧은 구간 센서 변화(패턴/노이즈) 포착
+
 <img width="505" height="73" alt="1  초기-Conv1D" src="https://github.com/user-attachments/assets/7625a004-1e8a-4f8f-afe3-2bb82bba1756" />
 
-** -BiLSTM **: 시간 흐름(열화 진행)을 학습
+**-BiLSTM** : 시간 흐름(열화 진행)을 학습
+
 <img width="545" height="85" alt="1  초기-BiLSTM " src="https://github.com/user-attachments/assets/e0cb04a6-740d-4dac-891a-0632b47bd30e" />
 
  -Attention : 중요한 시점(특히 고장 직전)을 강조
