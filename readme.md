@@ -66,7 +66,8 @@ FD-004: 운전 조건(고도, 속도, 쓰로틀 각도) 6개, 고장모드 (HPC,
    - 컬럼 라벨링 및 파생 컬럼 생성
       1. op_setting_1, sensor_1 등의 컬럼 명이 아닌 실제 센서 내용을 알수있는 컬럼 명으로 라벨링
       2. 공기 유동 비율, 압력 비 등의 비율 파생 컬럼을 만들어 무차원수가 되어 온도나 압력등의 외부 요인의 영향을 제거한다. 현상을 해석하기 쉬워진다.
-
+     
+```PS
 rain_df["P50[psi]"] = train_df["epr[-]"]*train_df["P2[psi]"]
 
 train_df["Fan.PR[-]"] = train_df["P15[psi]"]/train_df["P2[psi]"]
@@ -82,6 +83,7 @@ train_df["W15[lbm/s]"] = train_df["W24[lbm/s]"]*train_df["BPR[-]"] # bypass
 train_df["W2[lbm/s]"] = train_df["W15[lbm/s]"] + train_df["W24[lbm/s]"] # overall
 
 train_df["WfP3C[pph/psi]"] = train_df["phi[pph/psi]"]/np.sqrt(train_df["T2[R]"]/518.67)
+```
 
    - RUL Clipping
       1. 이 문제의 핵심 전처리 전략이다.
