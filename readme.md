@@ -359,7 +359,7 @@ print(test_df.sort_values(by='nasa_penalty', ascending=False).head(10))
 
 <img width="1408" height="768" alt="Gemini_Generated_Image_l3bspml3bspml3bs" src="https://github.com/user-attachments/assets/29f244eb-d908-4945-8749-5001ad912b31" />
 
-**● 결론**: 이 구조는 RMSE/MAE 개선엔 강하지만 NASA 스코어 기준으로 폭탄을 제어하는 장치가 없어서 딥러닝 모델로 평균 RUL 예측을 만들었지만 NASA 점수는 폭탄 엔진 때문에 매우 높았다.
+**● 결론**: 이 구조는 RMSE/MAE 개선엔 강하지만 NASA 스코어 기준으로 폭탄을 제어하는 장치가 없어서 딥러닝 모델로 평균 RUL 예측을 만들었지만 NASA 점수는 폭탄 엔진 때문에 매우 높았습니다.
 
 **NASA Score:** 수만~수백만
 
@@ -420,7 +420,7 @@ over 폭탄을 줄임 → NASA 점수가 크게 내려감 →low RUL 구간의 �
 
 <img width="1408" height="768" alt="Gemini_Generated_Image_7f6bv17f6bv17f6b" src="https://github.com/user-attachments/assets/3148cd8c-4e10-44ad-a1af-4a96539623f5" />
 
-**● 결론 :** 모델이 NASA 친화적이 되면서 평균적으로 좋아짐 (14k → 7k)
+**● 결론 :** 폭탄 엔진(TOP-10)을 직접 겨냥해 센서 억제·후처리·robust 집계로 꼬리를 깎아 점수를 더 줄였습니다.
 
 **NASA Score :** 약 14,000 → 10,000 → 7,000대
 
@@ -442,7 +442,7 @@ over 폭탄을 줄임 → NASA 점수가 크게 내려감 →low RUL 구간의 �
 
 
 
-**● 결론**: TOP-10 폭탄 엔진을 직접 겨냥해, 조건별 정규화 + median_lastk + squash 최적화로 꼬리를 제거함” (7k → 5k)
+**● 결론**: 조건별 정규화 + last-k median + squash 최적화로 ‘꼬리 폭탄’을 체계적으로 제거해 5천점대까지 내렸습니다.
 
 **NASA Score** : 약 5,000점대
 
@@ -451,7 +451,7 @@ over 폭탄을 줄임 → NASA 점수가 크게 내려감 →low RUL 구간의 �
 
 
 **(결론)**
-현재 단계의 성과는 모델 복잡화가 아니라, 조건별 스케일링 + last-k median + squash 최적화로 NASA 점수를 터뜨리는 ‘꼬리’를 체계적으로 제거한 결과다.
+현재 단계의 성과는 모델 복잡화가 아니라, 테스트 데이터의 특징을 알고 조건별 스케일링 + last-k median + squash 최적화로 NASA 점수를 터뜨리는 ‘꼬리’를 체계적으로 제거한 결과다.
 
 <img width="740" height="170" alt="머신러닝 한계" src="https://github.com/user-attachments/assets/a9ebbbc3-49d4-479c-a348-98468a9d81c3" />
 
