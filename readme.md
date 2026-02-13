@@ -345,7 +345,7 @@ print(test_df.sort_values(by='nasa_penalty', ascending=False).head(10))
 
 <img width="505" height="73" alt="1  초기-Conv1D" src="https://github.com/user-attachments/assets/7625a004-1e8a-4f8f-afe3-2bb82bba1756" />
 
-**-BiLSTM** : 시간 흐름(열화 진행)을 학습
+**-BiLSTM** : 시간이 지날수록 열화라는 시계열 구조를 학습시키고 
 
 <img width="545" height="85" alt="1  초기-BiLSTM " src="https://github.com/user-attachments/assets/e0cb04a6-740d-4dac-891a-0632b47bd30e" />
 
