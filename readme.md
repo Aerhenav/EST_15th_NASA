@@ -341,8 +341,6 @@ print(test_df.sort_values(by='nasa_penalty', ascending=False).head(10))
 
 **1.초기[CNN + LSTM + Attention 구조로 시계열 패턴 학습]** 
 
-<img width="1408" height="768" alt="Gemini_Generated_Image_l3bspml3bspml3bs" src="https://github.com/user-attachments/assets/29f244eb-d908-4945-8749-5001ad912b31" />
-
 **-Conv1D:** 짧은 구간 센서 변화(패턴/노이즈) 포착
 
 <img width="505" height="73" alt="1  초기-Conv1D" src="https://github.com/user-attachments/assets/7625a004-1e8a-4f8f-afe3-2bb82bba1756" />
@@ -359,6 +357,8 @@ print(test_df.sort_values(by='nasa_penalty', ascending=False).head(10))
 
 <img width="379" height="212" alt="1  초기-GAP + Dense" src="https://github.com/user-attachments/assets/3fc2c72e-f5fb-4d90-8cd0-a34d6ed970dd" />
 
+<img width="1408" height="768" alt="Gemini_Generated_Image_l3bspml3bspml3bs" src="https://github.com/user-attachments/assets/29f244eb-d908-4945-8749-5001ad912b31" />
+
 **● 결론**: 이 구조는 RMSE/MAE 개선엔 강하지만 NASA 스코어 기준으로 폭탄을 제어하는 장치가 없어서 딥러닝 모델로 평균 RUL 예측을 만들었지만 NASA 점수는 폭탄 엔진 때문에 매우 높았다.
 
 **NASA Score:** 수만~수백만
@@ -366,7 +366,6 @@ print(test_df.sort_values(by='nasa_penalty', ascending=False).head(10))
 
 **2. 중기[NASA 비대칭(Asymmetric) + 가중 Loss 도입]** 
 
-<img width="1408" height="768" alt="Gemini_Generated_Image_gpmpxugpmpxugpmp" src="https://github.com/user-attachments/assets/d2129998-b07f-4a96-8d9c-8c55c79edc86" />
 
 **- NASA 비대칭 Loss :** NASA는 over를 더 싫어한다는 규칙을 딥러닝 loss에 직접 주입한 순간, 점수가 본격적으로 내려가기 시작
 over 폭탄을 줄임 → NASA 점수가 크게 내려감 →low RUL 구간의 불안정 예측을 줄임 → 폭탄 unit 감소 → 그래서 ~14,000대까지 내려가는 계기가 됨
@@ -377,6 +376,8 @@ over 폭탄을 줄임 → NASA 점수가 크게 내려감 →low RUL 구간의 �
 
  <img width="418" height="513" alt="2  중기-Multi-seed 앙상블(폭탄 유닛 줄이기)" src="https://github.com/user-attachments/assets/72d0510f-1159-4518-90af-8fd2a9f5eeb2" />
 
+<img width="1408" height="768" alt="Gemini_Generated_Image_gpmpxugpmpxugpmp" src="https://github.com/user-attachments/assets/d2129998-b07f-4a96-8d9c-8c55c79edc86" />
+
 **• 결론 :** NASA는 over에 더 가혹 → loss에서 over를 더 강하게 벌주기 시작 결과적으로 “폭탄 엔진의 over/under 극단”이 줄어듦 NASA의 비대칭 구조(특히 over 벌점)를 loss에 반영하고 앙상블로 분산을 줄여 14,000대까지 낮췄다.
 
 **NASA Score:** 수만 → 14,000점대
@@ -384,8 +385,6 @@ over 폭탄을 줄임 → NASA 점수가 크게 내려감 →low RUL 구간의 �
 
 
 **3. 후기[위험 센서 억제(감쇠/드랍), TOP-10 엔진 분석, 후처리 (squash/piecewise), unit-last robust 집계(median_lastk]**
-
-<img width="1408" height="768" alt="Gemini_Generated_Image_7f6bv17f6bv17f6b" src="https://github.com/user-attachments/assets/3148cd8c-4e10-44ad-a1af-4a96539623f5" />
 
 **• 모델CNN/LSTM(+Attention) 구조 유지/개선**
 **1. Loss는 동일**
@@ -419,6 +418,7 @@ over 폭탄을 줄임 → NASA 점수가 크게 내려감 →low RUL 구간의 �
 
 <img width="773" height="280" alt="3  후기-unit-last robust 집계(median_lastk)" src="https://github.com/user-attachments/assets/d5cc1060-0f08-4a30-abf5-45ca6d66a103" />
 
+<img width="1408" height="768" alt="Gemini_Generated_Image_7f6bv17f6bv17f6b" src="https://github.com/user-attachments/assets/3148cd8c-4e10-44ad-a1af-4a96539623f5" />
 
 **● 결론 :** 모델이 NASA 친화적이 되면서 평균적으로 좋아짐 (14k → 7k)
 
