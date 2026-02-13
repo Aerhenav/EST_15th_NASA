@@ -1,19 +1,19 @@
 ## AI 모델 개발 15회차 1차 팀프로젝트 - NASA Turbofan Jet Engine Data Set 터보엔진 유지보전 문제_FD001
-[문제 개요]     
+**[문제 개요]**     
 NASA C-MAPSS(Commercial Modular Aero-Propulsion System Simulation) 데이터셋은 예지 보전(Predictive Maintenance) 분야의 'Hello World'와 같은 매우 유명하고 중요한 데이터셋입니다.    
 
-[문제의 배경]     
+**[문제의 배경]**     
 IEEE PHM 2008 챌린지: 이 데이터는 2008년 PHM(Prognostics and Health Management, 고장 예지 및 건전성 관리) 데이터 챌린지 대회에서 처음 공개되었습니다.    
  (IEEE(전기전자공학자협회)는 전 세계 전기, 전자, 컴퓨터, 통신 분야의 표준화와 기술 발전을 주도하는 세계 최대 규모의 전문가 기술 단체)   
 
 데이터셋의 탄생 배경은 **"비싼 제트 엔진을 실제로 고장 날 때까지 돌려보는 것은 불가능에 가깝다"**는 현실적인 문제에서 출발
 NASA는 실제 엔진과 매우 유사한 물리적 특성을 가진 고정밀 시뮬레이터 소프트웨어(C-MAPSS)를 개발했습니다. 이 소프트웨어로 수만 번의 비행 시뮬레이션을 돌려 가상의 '고장 데이터'를 만들어낸 것이 바로 이 데이터셋입니다.
 
-[문제의 목표]
+**[문제의 목표]**
 이 문제의 핵심 목표는 **"엔진이 언제 고장 날지 맞히는 것"**입니다.
     구해야 하는 것: RUL (Remaining Useful Life, 잔여 수명)
 
-[실험 시나리오]
+**[실험 시나리오]**
 1. 초기 상태: 각 엔진은 정상 상태에서 작동을 시작합니다.
    - 단, 사용자에게는 알려지지 않은 수준의 초기 마모(Initial Wear)와 제조 공차(Variation)가 존재합니다.
      (이는 결함이 아닌 정상적인 범주입니다.)
@@ -22,12 +22,15 @@ NASA는 실제 엔진과 매우 유사한 물리적 특성을 가진 고정밀 �
    - 학습 세트 (Train): 결함 발생부터 시스템 고장(Failure) 시점까지의 모든 데이터가 포함됩니다.
    - 테스트 세트 (Test): 고장 발생 전 임의의 시점에서 데이터 기록이 중단됩니다.
 
-[데이터 셋의 특징]
+**[데이터 셋의 특징]**
 1. 시계열 데이터 (Time-Series): 엔진이 작동하는 동안 센서(온도, 압력, 속도 등 21개) 값이 시간(Cycle) 순서대로 기록되어 있습니다.
 2. FD-001 부터 FD-004 까지 난이도 별로 데이터셋이 구성되어 있습니다.
 
 
-[난이도 별 차이]
+**[난이도 별 차이]**
+
+<img width="2752" height="1536" alt="Simple_and_friendly_infographic_comparing_two_airp-1770799533955" src="https://github.com/user-attachments/assets/8ac1d6c5-7b46-4bd8-90a7-b373b28fa709" />
+
 FD-001: 운전 조건(고도, 속도, 쓰로틀 각도) 1개, 고장모드 (HPC, 고압압축기) 1개    
 FD-002: 운전 조건(고도, 속도, 쓰로틀 각도) 6개, 고장모드 (HPC, 고압압축기) 1개    
 FD-003: 운전 조건(고도, 속도, 쓰로틀 각도) 1개, 고장모드 (HPC, 고압압축기 / LPT, 저압 터빈) 2개    
@@ -45,7 +48,7 @@ FD-004: 운전 조건(고도, 속도, 쓰로틀 각도) 6개, 고장모드 (HPC,
    - 고장 모드 (Fault Modes): 1가지 (HPC 열화 - HPC Degradation)
    - 이 문제의 데이터셋의 특징은 초기 마모와 계측 노이즈를 반영해 노이즈가 굉장히 심한것이 특징입니다.
 
-[문제 채점 방식 - nasa score]
+**[문제 채점 방식 - nasa score]**
 - 항공기의 경우 남은 수명을 더 적게 예측해 미리 사용정지 할경우 생기는 문제는 심각하지 않지만 반대 경우 운전 중 사고가 나서 심각한 문제가 발생할 수 있습니다.
 - 따라서 작은 RUL 예측(early prediction)에 비해 큰 RUL 예측(late prediction)에 대해 훨씬 큰 페널티를 매기는 nasa scroring 방식을 사용합니다.
 
@@ -53,7 +56,7 @@ FD-004: 운전 조건(고도, 속도, 쓰로틀 각도) 6개, 고장모드 (HPC,
 
 ![nasa scoring 그래프.jpg](https://cdn.discordapp.com/attachments/1451496750023049256/1471382306441920764/nasa_scoring_.jpg?ex=698ebb0e&is=698d698e&hm=5300f1623be7b6e78f1c273ad42ec547186abe2d8a621146b73b34d9ce11a183&)
 
-[FD-001 문제해결 핵심 전략]
+**[FD-001 문제해결 핵심 전략]**
 
    - 노이즈 제거
       1. roliing window 방식
@@ -129,7 +132,7 @@ train_df["WfP3C[pph/psi]"] = train_df["phi[pph/psi]"]/np.sqrt(train_df["T2[R]"]/
 
 
 
-[추가 설명]
+**[추가 설명]**
 1. 시계열 데이터: **시계열 데이터(Time-Series Data)**란 **"시간의 흐름에 따라 순서대로 기록된 데이터"**
 일반 데이터가 사진이라면 시계열 데이터란 동영상
 시계열 데이터를 배운 머신러닝 모델 (randomforest, xgboost 등으로 푸는 방식을 경험해 보고자 이 문제를 선택)
@@ -147,7 +150,7 @@ train_df["WfP3C[pph/psi]"] = train_df["phi[pph/psi]"]/np.sqrt(train_df["T2[R]"]/
 
 5. GroupShuffleSplit: 학습용(Train)과 검증용(Validation)으로 나눌 때 사용하는 교차 검증(Cross-Validation) 기법 중 하나. 일반적인 train_test_split이나 ShuffleSplit은 데이터를 무작위로 섞어서 나눕니다. 하지만 시계열 데이터나 특정 대상(엔진, 환자 등)의 데이터가 여러 행에 걸쳐 있는 경우, 이것은 치명적인 문제(Data Leakage)를 일으킵니다. 따라서 **"엔진 번호(Unit Number)"**를 그룹으로 지정하고, 그룹 단위로 나눕니다.
 
-[목표 점수]
+**[목표 점수]**
 
 본 문제는 시계열 데이셋이라서 이에 강한 딥러닝 방식이 더 좋은 점수를 받는다. 
 하지만 이 문제가 처음 공개된 당시와 마찬가지로 머신러닝 모델로 예측한다.
@@ -200,7 +203,7 @@ train_df["WfP3C[pph/psi]"] = train_df["phi[pph/psi]"]/np.sqrt(train_df["T2[R]"]/
 | **WfP3C[pph/psi]** | P3 압력 대비 연료 유량 (Fuel flow to P3 pressure ratio) | float64 |
 | **RUL** | 엔진의 남은 수명 (Remaining Useful Life) | int64 |
 
-[시행착오 내용]
+**[시행착오 내용]**
 1. RUL Clipping 순서 변경 
 초기에는 RUL clipping을 테스트 데이터 생성 전에 진행
 그러나 RUL Clipping 을 EDA 전에 반영 시 히트맵에서 RUL과의 상관계수가 변하는 것을 확인
@@ -225,7 +228,7 @@ optuna 하이퍼 튜닝에서도 nasa score를 기준으로 학습되게 수정�
 ![FD-001 최고 점수.png](https://cdn.discordapp.com/attachments/1451496750023049256/1469198194100539514/image.png?ex=698e0931&is=698cb7b1&hm=9b5f11fc293621e85b3eb3a3fc4f7edf625b68520911852e7f817580c31503aa&)
 
 
-[모델별 결과 시각화 자료]
+**[모델별 결과 시각화 자료]**
 
 ![FD-001 Real RUL 비교 SVR (2)](https://github.com/user-attachments/assets/f57c28a2-7465-4ac6-89ea-f9487253e1f1)
 
@@ -291,12 +294,12 @@ print(test_df.sort_values(by='nasa_penalty', ascending=False).head(10))
 
 **[시행착오 및 개선 사항]**
 
-[시행착오 내용]
+**[시행착오 내용]**
 1. 초기에 FD-001 노트북 베이스로 작업 시작
 2. FD-002는 동일 운전 조건이 아니라서 고도, 속도가 바뀌어 모델이 고장 진행에 대한 센서값의 추세를 읽을수 없음.
 따라서 아래와 같은 전처리를 진행함.
 
-[전처리]
+**[전처리]**
 1) 운전조건에 따라 클러스터링
 
 <img width="450" height="340" alt="클러스터링 이미지" src="https://github.com/user-attachments/assets/72b099a5-1c90-4715-93c8-7526d0ab66f4" />
