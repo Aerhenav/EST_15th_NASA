@@ -251,6 +251,8 @@ optuna 하이퍼 튜닝에서도 nasa score를 기준으로 학습되게 수정�
 
 **[데이터 셋의 특징]**
 
+<img width="1408" height="768" alt="Gemini_Generated_Image_shioztshioztshio" src="https://github.com/user-attachments/assets/3a574ed6-0f19-488f-972b-ac0855584b9e" />
+
 * **다변량 시계열**: 21개의 센서 데이터와 3개의 운전 설정값이 기록되어 있습니다.
 * **복합 운전 조건**: FD001과 달리 6가지의 다른 환경 조건이 섞여 있어, 센서 값이 환경에 따라 크게 요동칩니다.
 
