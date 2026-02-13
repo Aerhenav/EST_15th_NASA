@@ -341,6 +341,8 @@ print(test_df.sort_values(by='nasa_penalty', ascending=False).head(10))
 
 **1.초기[CNN + LSTM + Attention 구조로 시계열 패턴 학습]** 
 
+<img width="1408" height="768" alt="Gemini_Generated_Image_l3bspml3bspml3bs" src="https://github.com/user-attachments/assets/29f244eb-d908-4945-8749-5001ad912b31" />
+
 **-Conv1D:** 짧은 구간 센서 변화(패턴/노이즈) 포착
 
 <img width="505" height="73" alt="1  초기-Conv1D" src="https://github.com/user-attachments/assets/7625a004-1e8a-4f8f-afe3-2bb82bba1756" />
@@ -364,6 +366,8 @@ print(test_df.sort_values(by='nasa_penalty', ascending=False).head(10))
 
 **2. 중기[NASA 비대칭(Asymmetric) + 가중 Loss 도입]** 
 
+<img width="1408" height="768" alt="Gemini_Generated_Image_gpmpxugpmpxugpmp" src="https://github.com/user-attachments/assets/d2129998-b07f-4a96-8d9c-8c55c79edc86" />
+
 **- NASA 비대칭 Loss :** NASA는 over를 더 싫어한다는 규칙을 딥러닝 loss에 직접 주입한 순간, 점수가 본격적으로 내려가기 시작
 over 폭탄을 줄임 → NASA 점수가 크게 내려감 →low RUL 구간의 불안정 예측을 줄임 → 폭탄 unit 감소 → 그래서 ~14,000대까지 내려가는 계기가 됨
 
@@ -380,6 +384,8 @@ over 폭탄을 줄임 → NASA 점수가 크게 내려감 →low RUL 구간의 �
 
 
 **3. 후기[위험 센서 억제(감쇠/드랍), TOP-10 엔진 분석, 후처리 (squash/piecewise), unit-last robust 집계(median_lastk]**
+
+<img width="1408" height="768" alt="Gemini_Generated_Image_7f6bv17f6bv17f6b" src="https://github.com/user-attachments/assets/3148cd8c-4e10-44ad-a1af-4a96539623f5" />
 
 **• 모델CNN/LSTM(+Attention) 구조 유지/개선**
 **1. Loss는 동일**
